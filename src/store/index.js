@@ -26,21 +26,29 @@ export default new Vuex.Store({
       const i = trackNumber - 1
       let playlist = state.playlist
       playlist.splice(i, 1);
-      uploadPlaylist(playlist)
+      uploadPlaylist(playlist).then(() => {
+        console.log('hey')
+        alert("Track is successfully deleted.")
+      })
     },
     clearPlaylist() {
-      uploadPlaylist([])
+      uploadPlaylist([]).then(() => {
+        console.log('hey')
+        alert("Playlist is successfully cleared.")
+      })
     },
     updatePlaylist({ commit }) {
       const email = localStorage.getItem("email")
-      playlistsCollection.doc(email).onSnapshot(function (doc) {
-        if (doc.data() == undefined) {
-          uploadPlaylist([]);
-          commit("setPlaylist", [])
-        } else {
-          commit("setPlaylist", doc.data().playlist)
-        }
-      });
+      if (email.length > 0) {
+        playlistsCollection.doc(email).onSnapshot(function (doc) {
+          if (doc.data() == undefined) {
+            uploadPlaylist([]);
+            commit("setPlaylist", [])
+          } else {
+            commit("setPlaylist", doc.data().playlist)
+          }
+        });
+      }
     }
   },
   modules: {
@@ -50,16 +58,22 @@ export default new Vuex.Store({
 const uploadPlaylist = (playlist) => {
   const email = localStorage.getItem("email")
   const time = new Date().getTime()
-  playlistsCollection
-    .doc(email)
-    .set({
-      playlist: playlist,
-      timestamp: time
-    })
-    .then(function () {
-      console.log("Document successfully written!");
-    })
-    .catch(function (error) {
-      console.error("Error writing new document: ", error);
-    });
+
+  return new Promise(function (resolve, reject) {
+    playlistsCollection
+      .doc(email)
+      .set({
+        playlist: playlist,
+        timestamp: time
+      })
+      .then(function () {
+        console.log("Document successfully written!");
+        resolve()
+      })
+      .catch(function (error) {
+        console.error("Error writing new document: ", error);
+        reject()
+      });
+  })
+
 }

@@ -22,6 +22,9 @@ Vue.use(APlayer, {
 new Vue({
   router,
   store,
+  mounted() {
+    store.dispatch("updatePlaylist");
+  },
   render: function (h) {
     return h(App)
   },

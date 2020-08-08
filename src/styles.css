@@ -47,6 +47,14 @@
     align-items: center;
 }
 
+/* image */
+
+.image {
+    max-width: 300px;
+    width: 100%;
+    padding-bottom: 20px;
+}
+
 /* button */
 
 .btn-outline.btn-outline-secondary {
@@ -68,6 +76,10 @@
 
 .pad-top-30 {
     padding-top: 30px;
+}
+
+.pad-bot-30 {
+    padding-bottom: 30px;
 }
 
 /* text */
@@ -139,6 +151,14 @@
     padding-bottom: 30px;
 }
 
+.slim .nav-link {
+    padding: 0.2rem 1rem;
+}
+
+.margin-top-md {
+    margin-top: 20px;
+}
+
 @media (min-width: 992px) {
     .navbar-expand-lg .navbar-nav {
         align-items: center;
@@ -153,5 +173,8 @@
     .flex-center-inner {
         border-radius: 5px;
         border: 1px solid #d6d6d6;
+    }
+    .margin-top-md {
+        margin-top: 0px;
     }
 }

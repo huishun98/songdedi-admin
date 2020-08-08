@@ -4,7 +4,8 @@ import Playlist from '@/views/Playlist.vue'
 import Home from '@/views/Home.vue'
 import Login from '@/views/Login.vue'
 import Settings from '@/views/Settings.vue'
-import store from '@/store/index'
+import NotFound from '@/views/404.vue'
+import About from '@/views/About.vue'
 
 Vue.use(VueRouter)
 
@@ -42,6 +43,12 @@ const routes = [
       requiresGuest: true
     }
   },
+  {
+    path: '/about',
+    name: 'About',
+    component: About,
+  },
+  { path: '*', component: NotFound }
 ]
 
 const router = new VueRouter({

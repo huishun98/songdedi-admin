@@ -87,7 +87,6 @@ export default {
     },
   },
   mounted() {
-    this.$store.dispatch("updatePlaylist");
     this.initialiseOptions();
   },
 };

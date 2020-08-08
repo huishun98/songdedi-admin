@@ -5,7 +5,7 @@
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
-      <b-collapse id="nav-collapse" is-nav>
+      <b-collapse id="nav-collapse" is-nav v-if="show">
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
           <li class="nav-item">
@@ -18,7 +18,7 @@
             <router-link class="nav-link" to="/settings">Settings</router-link>
           </li>
           <b-nav-item
-            class="btn-outline-secondary btn-outline margin-left-10"
+            class="btn-outline-secondary btn-outline margin-left-10 slim margin-top-md"
             href="javascript:void(0)"
             @click="logout()"
           >Logout</b-nav-item>
@@ -33,6 +33,12 @@ import { auth } from "@/firebase";
 
 export default {
   name: "Navbar",
+  props: {
+    show: {
+      type: Boolean,
+      default: true,
+    },
+  },
   methods: {
     logout() {
       const _this = this;

@@ -3,6 +3,7 @@
     <div class="flex-center-inner">
       <h1 class="title">SongDedi</h1>
       <p>This is a song dedication service.</p>
+      <router-link to="/about" class="pad-bot-30">Learn more</router-link>
       <div class="btn google-btn" @click="login()">
         <div class="google-icon-wrapper">
           <img
@@ -51,6 +52,7 @@ export default {
           // The signed-in user info.
           var user = result.user;
           localStorage.setItem("email", user.email);
+          _this.$store.dispatch("updatePlaylist");
           _this.$router.push("/home");
         });
     },

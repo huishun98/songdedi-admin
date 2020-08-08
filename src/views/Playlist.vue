@@ -24,9 +24,6 @@ export default {
     GoogleLogin,
     Navbar,
   },
-  mounted() {
-    this.$store.dispatch("updatePlaylist");
-  },
   computed: {
     playlist() {
       return this.$store.state.playlist;
