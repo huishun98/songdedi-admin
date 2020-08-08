@@ -1,0 +1,157 @@
+:root {
+    --white: #fff;
+    --google-blue: #4285f4;
+}
+
+#app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+}
+
+#nav {
+    padding: 30px;
+}
+
+#nav a {
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+    color: #42b983;
+}
+
+.flex {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+}
+
+.flex-center-inner {
+    padding: 20px;
+    width: 450px;
+    min-height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* button */
+
+.btn-outline.btn-outline-secondary {
+    border: 1px solid #ffffff80;
+}
+
+/* player */
+
+.aplayer.custom-player {
+    max-width: 1140px;
+    margin: auto;
+}
+
+/* padding and margin */
+
+.margin-left-10 {
+    margin-left: 10px;
+}
+
+.pad-top-30 {
+    padding-top: 30px;
+}
+
+/* text */
+
+.align-left {
+    text-align: left;
+}
+
+.title {
+    font-size: 24px;
+}
+
+.subtitle {
+    font-size: 18px;
+}
+
+/* section */
+
+.section {
+    padding: 10px 0 30px 0;
+    overflow-wrap: break-word;
+}
+
+/* google button */
+
+.btn.google-btn {
+    width: 200px;
+    height: 42px;
+    display: flex;
+    border-radius: 2px;
+    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .25);
+    padding: 0;
+    transition: opacity 0.3s;
+    margin: 0 auto;
+}
+
+.btn.google-btn:hover {
+    opacity: 0.6;
+}
+
+.google-icon-wrapper {
+    width: 20%;
+    height: 100%;
+    border-radius: 2px;
+    background-color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.google-icon {
+    width: 18px;
+    height: 18px;
+}
+
+.btn-text {
+    display: flex;
+    margin: 0;
+    width: 80%;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+}
+
+/* navbar */
+
+.navbar-collapse .navbar-nav {
+    padding-top: 10px;
+    padding-bottom: 30px;
+}
+
+@media (min-width: 992px) {
+    .navbar-expand-lg .navbar-nav {
+        align-items: center;
+    }
+    .aplayer.custom-player {
+        margin-top: 20px;
+    }
+    .navbar-collapse .navbar-nav {
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+    .flex-center-inner {
+        border-radius: 5px;
+        border: 1px solid #d6d6d6;
+    }
+}
