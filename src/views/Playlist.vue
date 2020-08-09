@@ -67,11 +67,11 @@ export default {
         "Do you really want to leave? Your music will stop!"
       );
       if (answer) {
+        this.$refs.aplayer.pause();
         next();
       } else {
         next(false);
       }
-      return;
     }
     next();
   },

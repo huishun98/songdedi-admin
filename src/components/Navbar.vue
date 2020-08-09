@@ -43,6 +43,9 @@ export default {
       default: true,
     },
   },
+  mounted() {
+    document.body.classList.remove("disable-scroll");
+  },
   watch: {
     collapseActive(newVal, oldVal) {
       if (newVal) {
