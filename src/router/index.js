@@ -58,6 +58,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  document.body.classList.remove("disable-scroll");
   const requiresAuth = to.matched.some(x => x.meta.requiresAuth)
   const requiresGuest = to.matched.some(x => x.meta.requiresGuest)
   const isLoggedIn = localStorage.getItem('email') !== null && localStorage.getItem('email').length > 0

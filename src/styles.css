@@ -3,6 +3,12 @@
     --google-blue: #4285f4;
 }
 
+body.disable-scroll {
+    overflow: hidden !important;
+}
+
+/* default */
+
 #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -23,6 +29,8 @@
 #nav a.router-link-exact-active {
     color: #42b983;
 }
+
+/* wrappers */
 
 .flex {
     display: flex;
@@ -63,6 +71,7 @@
 
 .btn-outline.btn-outline-secondary {
     border: 1px solid #ffffff80;
+    padding: 0 10px;
 }
 
 /* player */
@@ -74,8 +83,8 @@
 
 /* padding and margin */
 
-.margin-left-10 {
-    margin-left: 10px;
+.margin-left-10-md {
+    margin-left: 0px;
 }
 
 .pad-top-30 {
@@ -148,11 +157,39 @@
     font-size: 14px;
 }
 
+/* overlay */
+
+.overlay {
+    position: fixed;
+    top: 56px;
+    /* navbar */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #ffffffb7;
+    transform: translateX(100%);
+}
+
+.overlay.active {
+    transform: translateX(0);
+}
+
 /* navbar */
 
 .navbar-collapse .navbar-nav {
     padding-top: 10px;
     padding-bottom: 30px;
+}
+
+.navbar.sticky-top .navbar-collapse {
+    position: fixed;
+    /* navbar */
+    top: 56px;
+    left: 0;
+    right: 0;
+    background: #343a40;
+    transition: height 0.3s;
+    padding: 0 20px;
 }
 
 .slim .nav-link {
@@ -185,5 +222,13 @@
     }
     .margin-top-md {
         margin-top: 0px;
+    }
+    .margin-left-10-md {
+        margin-left: 10px;
+    }
+    .navbar.sticky-top .navbar-collapse {
+        position: relative;
+        top: unset;
+        padding: 0;
     }
 }

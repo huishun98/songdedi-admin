@@ -1,10 +1,11 @@
 <template>
   <b-navbar toggleable="lg" type="dark" variant="dark" sticky>
+    <div class="overlay" :class="{ 'active': collapseActive }" @click="closeCollapse()"></div>
     <router-link class="navbar-brand" to="/home">SongDedi</router-link>
 
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
-    <b-collapse id="nav-collapse" is-nav v-if="show">
+    <b-collapse id="nav-collapse" is-nav v-if="show" v-model="collapseActive">
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
         <li class="nav-item">
@@ -17,7 +18,7 @@
           <router-link class="nav-link" to="/settings">Settings</router-link>
         </li>
         <b-nav-item
-          class="btn-outline-secondary btn-outline margin-left-10 slim margin-top-md"
+          class="btn-outline-secondary btn-outline margin-left-10-md slim margin-top-md"
           href="javascript:void(0)"
           @click="logout()"
         >Logout</b-nav-item>
@@ -31,13 +32,30 @@ import { auth } from "@/firebase";
 
 export default {
   name: "Navbar",
+  data() {
+    return {
+      collapseActive: false,
+    };
+  },
   props: {
     show: {
       type: Boolean,
       default: true,
     },
   },
+  watch: {
+    collapseActive(newVal, oldVal) {
+      if (newVal) {
+        document.body.classList.add("disable-scroll");
+        return;
+      }
+      document.body.classList.remove("disable-scroll");
+    },
+  },
   methods: {
+    closeCollapse() {
+      this.collapseActive = false;
+    },
     logout() {
       const _this = this;
       auth
