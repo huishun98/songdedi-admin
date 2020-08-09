@@ -30,13 +30,11 @@ export default new Vuex.Store({
       let playlist = state.playlist
       playlist.splice(i, 1);
       uploadPlaylist(playlist).then(() => {
-        console.log('hey')
         alert("Track is successfully deleted.")
       })
     },
     clearPlaylist() {
       uploadPlaylist([]).then(() => {
-        console.log('hey')
         alert("Playlist is successfully cleared.")
       })
     },

@@ -3,7 +3,7 @@
     <div>
       <Navbar />
     </div>
-    <aplayer class="custom-player" :audio="playlist" ref="aplayer" />
+    <aplayer class="custom-player" :audio="playlist" ref="aplayer" :listMaxHeight="listMaxHeight" />
   </div>
 </template>
 
@@ -15,16 +15,17 @@ import axios from "axios";
 
 export default {
   name: "Playlist",
-  // data() {
-  //   return {
-  //     playlist: [],
-  //   };
-  // },
+  data() {
+    return {
+      listMaxHeight: 0,
+    };
+  },
   components: {
     GoogleLogin,
     Navbar,
   },
   mounted() {
+    this.initialiselistMaxHeight();
     this.$store.dispatch("watchPlaylistUpdates");
 
     this.$watch(
@@ -42,6 +43,19 @@ export default {
     },
   },
   methods: {
+    initialiselistMaxHeight() {
+      const viewWidth = window.outerWidth;
+      let viewHeight = window.outerHeight;
+      const usedHeight = 56 + 66; // navbar + player info height
+      const marginTop = 20;
+
+      if (viewWidth > 990) {
+        viewHeight = window.innerHeight;
+        this.listMaxHeight = viewHeight - usedHeight - marginTop * 2;
+        return;
+      }
+      this.listMaxHeight = viewHeight - usedHeight;
+    },
     isPlaying() {
       const { media } = this.$refs.aplayer;
       return !media.paused;
