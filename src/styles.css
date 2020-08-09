@@ -55,6 +55,10 @@
     padding-bottom: 20px;
 }
 
+.translate-10 {
+    transform: translateX(-10px);
+}
+
 /* button */
 
 .btn-outline.btn-outline-secondary {
@@ -157,6 +161,11 @@
 
 .margin-top-md {
     margin-top: 20px;
+}
+
+.navbar-dark .navbar-toggler {
+    border: none;
+    outline: none
 }
 
 @media (min-width: 992px) {

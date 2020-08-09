@@ -52,7 +52,7 @@ export default {
           // The signed-in user info.
           var user = result.user;
           localStorage.setItem("email", user.email);
-          _this.$store.dispatch("updatePlaylist");
+          _this.$store.dispatch("loginGeneratePlaylist", user.email);
           _this.$router.push("/home");
         });
     },

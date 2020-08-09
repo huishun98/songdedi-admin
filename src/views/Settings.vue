@@ -8,10 +8,10 @@
       <!-- <div class="section">
         <h2 class="subtitle">Download playlist</h2>
         <b-button variant="primary" @click="downloadPlaylist()">Download playlist</b-button>
-      </div> -->
+      </div>-->
       <div class="section">
         <h2 class="subtitle">Delete tracks</h2>
-        <p>Enter track number and click delete</p>
+        <p>Select track number to delete</p>
         <b-form inline>
           <b-form-select
             id="inline-form-custom-select-pref"
@@ -19,13 +19,13 @@
             :options="options"
             :value="null"
             v-model="selectedTrack"
+            @change="deleteTrack()"
           ></b-form-select>
-          <b-button variant="danger" @click="deleteTrack()">Delete</b-button>
         </b-form>
       </div>
       <div class="section">
         <h2 class="subtitle">Clear playlist</h2>
-        <b-button variant="danger" @click="clearPlaylist()">Clear all tracks</b-button>
+        <b-link class="text-danger" @click="clearPlaylist()">Clear all tracks</b-link>
       </div>
     </div>
   </div>
@@ -70,12 +70,17 @@ export default {
         alert("Please select a track to delete");
         return;
       }
-      const answer = window.confirm(
-        "Do you really want to delete this track? This action is not reversible."
-      );
-      if (answer) {
-        this.$store.dispatch("deleteTrack", this.selectedTrack);
-      }
+      const _this = this;
+
+      setTimeout(function () {
+        const answer = window.confirm(
+          `Do you really want to delete track ${_this.selectedTrack}? This action is not reversible.`
+        );
+        if (answer) {
+          _this.$store.dispatch("deleteTrack", _this.selectedTrack);
+          _this.selectedTrack = null;
+        }
+      }, 0);
     },
     clearPlaylist() {
       const answer = window.confirm(
@@ -87,6 +92,7 @@ export default {
     },
   },
   mounted() {
+    this.$store.dispatch("watchPlaylistUpdates");
     this.initialiseOptions();
   },
 };

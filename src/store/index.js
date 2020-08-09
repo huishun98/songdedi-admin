@@ -22,6 +22,9 @@ export default new Vuex.Store({
     // downloadPlaylist() {
 
     // },
+    updateCurrentMusicHandler({ }, id) {
+      updateCurrentMusic(id)
+    },
     deleteTrack({ state }, trackNumber) {
       const i = trackNumber - 1
       let playlist = state.playlist
@@ -37,34 +40,87 @@ export default new Vuex.Store({
         alert("Playlist is successfully cleared.")
       })
     },
-    updatePlaylist({ commit }) {
-      const email = localStorage.getItem("email")
-      if (email.length > 0) {
-        playlistsCollection.doc(email).onSnapshot(function (doc) {
-          if (doc.data() == undefined) {
-            uploadPlaylist([]);
-            commit("setPlaylist", [])
-          } else {
+    loginGeneratePlaylist({ dispatch, commit }, email) {
+      if (email.length <= 0) {
+        console.log(`Error getting user email: ${email}`)
+      }
+      // check if user exists, if not create new playlist
+      const docRef = playlistsCollection.doc(email)
+      docRef.get()
+        .then((doc) => {
+          if (doc.exists) {
             commit("setPlaylist", doc.data().playlist)
+          } else {
+            // separate login interation with firebase to ensure that clear playlist only happens when required
+            newPlaylist(email).then(() => {
+              dispatch('updatePlaylist')
+            });
           }
         });
+    },
+    updatePlaylist({ commit }) {
+      const email = localStorage.getItem("email")
+      if (email.length <= 0) {
+        return
       }
+      let docRef = playlistsCollection.doc(email);
+      docRef.get().then((doc) => {
+        if (doc.exists) {
+          commit("setPlaylist", doc.data().playlist)
+        } else {
+          console.log(`Error getting playlist: ${email}`)
+        }
+      }).catch(function (error) {
+        console.log("Error getting document:", error);
+      });
+    },
+    watchPlaylistUpdates({ commit }) {
+      const email = localStorage.getItem("email")
+      playlistsCollection.doc(email).onSnapshot(function (doc) {
+        if (doc.data() == undefined) {
+          console.log(`Error getting playlist: ${email}`)
+        } else {
+          commit("setPlaylist", doc.data().playlist)
+        }
+      });
     }
   },
   modules: {
   }
 })
 
-const uploadPlaylist = (playlist) => {
+
+// Uploading to firestore
+
+const updateCurrentMusic = (id) => {
   const email = localStorage.getItem("email")
+
+  return new Promise(function (resolve, reject) {
+    playlistsCollection
+      .doc(email)
+      .update({
+        currentMusic: id
+      })
+      .then(function () {
+        resolve()
+      })
+      .catch(function (error) {
+        console.error("Error updating current music: ", error);
+        reject()
+      });
+  })
+}
+
+const newPlaylist = (email) => {
   const time = new Date().getTime()
 
   return new Promise(function (resolve, reject) {
     playlistsCollection
       .doc(email)
       .set({
-        playlist: playlist,
-        timestamp: time
+        playlist: [],
+        timestamp: time,
+        currentMusic: 0
       })
       .then(function () {
         console.log("Document successfully written!");
@@ -75,5 +131,26 @@ const uploadPlaylist = (playlist) => {
         reject()
       });
   })
+}
 
+const uploadPlaylist = (playlist) => {
+  const email = localStorage.getItem("email")
+  const time = new Date().getTime()
+
+  return new Promise(function (resolve, reject) {
+    playlistsCollection
+      .doc(email)
+      .update({
+        playlist: playlist,
+        timestamp: time
+      })
+      .then(function () {
+        console.log("Document successfully updated");
+        resolve()
+      })
+      .catch(function (error) {
+        console.error("Error updating document: ", error);
+        reject()
+      });
+  })
 }

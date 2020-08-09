@@ -3,7 +3,7 @@
     <div>
       <Navbar />
     </div>
-    <aplayer class="custom-player" :audio="playlist" />
+    <aplayer class="custom-player" :audio="playlist" ref="aplayer" />
   </div>
 </template>
 
@@ -24,6 +24,18 @@ export default {
     GoogleLogin,
     Navbar,
   },
+  mounted() {
+    this.$store.dispatch("watchPlaylistUpdates");
+
+    this.$watch(
+      () => {
+        return this.$refs.aplayer.currentMusic;
+      },
+      (item) => {
+        this.$store.dispatch("updateCurrentMusicHandler", item.id);
+      }
+    );
+  },
   computed: {
     playlist() {
       return this.$store.state.playlist;
@@ -31,8 +43,8 @@ export default {
   },
   methods: {
     isPlaying() {
-      const x = document.getElementsByClassName("aplayer-button")[0];
-      return x.classList.contains("aplayer-pause");
+      const { media } = this.$refs.aplayer;
+      return !media.paused;
     },
   },
   beforeRouteLeave(to, from, next) {
@@ -45,7 +57,7 @@ export default {
       } else {
         next(false);
       }
-      return
+      return;
     }
     next();
   },
