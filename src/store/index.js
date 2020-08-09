@@ -23,7 +23,7 @@ export default new Vuex.Store({
 
     // },
     updateCurrentMusicHandler({ }, id) {
-      updateCurrentMusic(id)
+      updateCurrentMusic(id - 1)
     },
     deleteTrack({ state }, trackNumber) {
       const i = trackNumber - 1
@@ -92,14 +92,14 @@ export default new Vuex.Store({
 
 // Uploading to firestore
 
-const updateCurrentMusic = (id) => {
+const updateCurrentMusic = (index) => {
   const email = localStorage.getItem("email")
 
   return new Promise(function (resolve, reject) {
     playlistsCollection
       .doc(email)
       .update({
-        currentMusic: id
+        currentMusic: index
       })
       .then(function () {
         resolve()
