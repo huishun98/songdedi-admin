@@ -39,7 +39,7 @@ export default new Vuex.Store({
       })
     },
     loginGeneratePlaylist({ dispatch, commit }, email) {
-      if (email.length <= 0) {
+      if (email == null || email.length <= 0) {
         console.log(`Error getting user email: ${email}`)
       }
       // check if user exists, if not create new playlist
@@ -58,7 +58,7 @@ export default new Vuex.Store({
     },
     updatePlaylist({ commit }) {
       const email = localStorage.getItem("email")
-      if (email.length <= 0) {
+      if (email == null || email.length <= 0) {
         return
       }
       let docRef = playlistsCollection.doc(email);
