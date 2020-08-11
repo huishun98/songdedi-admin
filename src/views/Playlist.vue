@@ -72,6 +72,7 @@ export default {
       } else {
         next(false);
       }
+      return;
     }
     next();
   },
