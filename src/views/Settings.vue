@@ -27,11 +27,16 @@
         <h2 class="subtitle">Clear playlist</h2>
         <b-link class="text-danger" @click="clearPlaylist()">Clear all tracks</b-link>
       </div>
+      <div class="section">
+        <h2 class="subtitle">Sign out of account</h2>
+        <b-link class="text-danger" @click="logout()">Sign out</b-link>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import { auth } from "@/firebase";
 import Navbar from "@/components/Navbar.vue";
 
 export default {
@@ -56,6 +61,20 @@ export default {
     },
   },
   methods: {
+    logout() {
+      const _this = this;
+      auth
+        .signOut()
+        .then(function () {
+          // Sign-out successful.
+          localStorage.setItem("email", "");
+          _this.$router.push("/login");
+        })
+        .catch(function (error) {
+          // An error happened.
+          console.log(error);
+        });
+    },
     initialiseOptions() {
       const playlistLength = this.$store.getters.getPlaylistLength;
       let array = [...Array(playlistLength).keys()].map((x) => ++x);

@@ -14,19 +14,12 @@
         <li class="nav-item">
           <router-link class="nav-link" to="/settings">Settings</router-link>
         </li>
-        <b-nav-item
-          class="btn-outline-secondary btn-outline margin-left-10-md slim margin-top-md"
-          href="javascript:void(0)"
-          @click="logout()"
-        >Logout</b-nav-item>
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
 </template>
 
 <script>
-import { auth } from "@/firebase";
-
 export default {
   name: "Navbar",
   data() {
@@ -55,20 +48,6 @@ export default {
   methods: {
     closeCollapse() {
       this.collapseActive = false;
-    },
-    logout() {
-      const _this = this;
-      auth
-        .signOut()
-        .then(function () {
-          // Sign-out successful.
-          localStorage.setItem("email", "");
-          _this.$router.push("/login");
-        })
-        .catch(function (error) {
-          // An error happened.
-          console.log(error);
-        });
     },
   },
 };
