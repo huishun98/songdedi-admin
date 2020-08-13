@@ -68,6 +68,7 @@ export default {
         .then(function () {
           // Sign-out successful.
           localStorage.setItem("email", "");
+          _this.$store.dispatch("logoutClearPlaylist");
           _this.$router.push("/login");
         })
         .catch(function (error) {

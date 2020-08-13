@@ -219,14 +219,13 @@ body.disable-scroll {
 .banner-text {
     padding: 10px;
     height: 100px;
-    font-size: 14px;
+    font-size: 15px;
     text-align: left;
 }
 
 /* qrcode */
 
 .qr-wrapper {
-    display: none;
     position: fixed;
     top: 70px;
     right: 20px;
@@ -238,9 +237,6 @@ body.disable-scroll {
 }
 
 @media (min-width: 992px) {
-    .qr-wrapper {
-        display: block;
-    }
     .navbar-expand-lg .navbar-nav {
         align-items: center;
     }

@@ -28,7 +28,7 @@ export default {
   name: "Playlist",
   data() {
     return {
-      showQr: true,
+      showQr: false,
       listMaxHeight: 0,
       size: 250,
     };

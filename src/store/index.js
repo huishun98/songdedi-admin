@@ -22,6 +22,9 @@ export default new Vuex.Store({
     // downloadPlaylist() {
 
     // },
+    logoutClearPlaylist({ commit }) {
+      commit("setPlaylist", [])
+    },
     updateCurrentMusicHandler({ }, id) {
       updateCurrentMusic(id - 1)
     },
