@@ -1,10 +1,16 @@
 <template>
   <div class="home">
     <Navbar />
+    <div class="qr-wrapper">
+      <qrcode-vue :value="link" :size="size" level="H" class="box-shadow qr" v-if="showQr"></qrcode-vue>
+      <a href="javascript:void(0)" v-if="showQr" @click="toggleShowQr()">Hide</a>
+      <a href="javascript:void(0)" v-if="!showQr" @click="toggleShowQr()">Show</a>
+    </div>
+
     <div class="banner-text flex-center split-text">
       <div class="split-text">
         Request songs at
-        <a :href="link" target="_blank" class="">{{link}}</a>.
+        <a :href="link" target="_blank">{{link}}</a>.
       </div>
     </div>
     <aplayer class="custom-player" :audio="playlist" ref="aplayer" :listMaxHeight="listMaxHeight" />
@@ -16,17 +22,21 @@ import { storage, db, auth, playlistsCollection } from "@/firebase";
 import GoogleLogin from "vue-google-login";
 import Navbar from "@/components/Navbar.vue";
 import axios from "axios";
+import QrcodeVue from "qrcode.vue";
 
 export default {
   name: "Playlist",
   data() {
     return {
+      showQr: true,
       listMaxHeight: 0,
+      size: 250,
     };
   },
   components: {
     GoogleLogin,
     Navbar,
+    QrcodeVue,
   },
   mounted() {
     this.initialiselistMaxHeight();
@@ -51,6 +61,9 @@ export default {
     },
   },
   methods: {
+    toggleShowQr() {
+      this.showQr = !this.showQr;
+    },
     initialiselistMaxHeight() {
       const viewWidth = window.outerWidth;
       let viewHeight = window.outerHeight;
