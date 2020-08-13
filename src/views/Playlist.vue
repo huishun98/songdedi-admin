@@ -2,9 +2,10 @@
   <div class="home">
     <Navbar />
     <div class="qr-wrapper">
-      <qrcode-vue :value="link" :size="size" level="H" class="box-shadow qr" v-if="showQr"></qrcode-vue>
-      <a href="javascript:void(0)" v-if="showQr" @click="toggleShowQr()">Hide</a>
-      <a href="javascript:void(0)" v-if="!showQr" @click="toggleShowQr()">Show</a>
+      <div @click="toggleShowQr()">
+        <qrcode-vue :value="link" :size="size" level="H" class="box-shadow qr" v-if="showQr"></qrcode-vue>
+      </div>
+      <a href="javascript:void(0)" v-if="!showQr" @click="toggleShowQr()">Show QR</a>
     </div>
 
     <div class="banner-text flex-center split-text">
