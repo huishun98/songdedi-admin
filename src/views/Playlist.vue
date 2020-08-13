@@ -55,7 +55,7 @@ export default {
       const viewWidth = window.outerWidth;
       let viewHeight = window.outerHeight;
       const usedHeight = 56 + 66 + 100; // navbar + player info + banner-text height
-      const marginBot = 20;
+      const marginBot = 40;
 
       if (viewWidth > 990) {
         viewHeight = window.innerHeight;
