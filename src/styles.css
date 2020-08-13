@@ -32,9 +32,10 @@ body.disable-scroll {
 
 /* wrappers */
 
-.flex {
+.flex-center {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    align-items: center;
 }
 
 .flex-center {
@@ -107,6 +108,10 @@ body.disable-scroll {
 
 .subtitle {
     font-size: 18px;
+}
+
+.split-text {
+    word-break: break-word;
 }
 
 /* section */
@@ -205,12 +210,19 @@ body.disable-scroll {
     outline: none
 }
 
+/* banner */
+
+.banner-text {
+    padding: 10px;
+    height: 100px;
+    font-size: 14px;
+    text-align: left;
+}
+
+
 @media (min-width: 992px) {
     .navbar-expand-lg .navbar-nav {
         align-items: center;
-    }
-    .aplayer.custom-player {
-        margin-top: 20px;
     }
     .navbar-collapse .navbar-nav {
         padding-top: 0px;
@@ -230,5 +242,9 @@ body.disable-scroll {
         position: relative;
         top: unset;
         padding: 0;
+    }
+    .banner-text {
+        font-size: 16px;
+        text-align: center;
     }
 }

@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Playlist from '@/views/Playlist.vue'
-import Home from '@/views/Home.vue'
 import Login from '@/views/Login.vue'
 import Settings from '@/views/Settings.vue'
 import NotFound from '@/views/404.vue'
@@ -14,14 +13,6 @@ const routes = [
   {
     path: '/home',
     name: 'Home',
-    component: Home,
-    meta: {
-      requiresAuth: true
-    }
-  },
-  {
-    path: '/playlist',
-    name: 'Playlist',
     component: Playlist,
     meta: {
       requiresAuth: true

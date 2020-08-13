@@ -12,9 +12,6 @@
           <router-link class="nav-link" to="/">Home</router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link" to="/playlist">Playlist</router-link>
-        </li>
-        <li class="nav-item">
           <router-link class="nav-link" to="/settings">Settings</router-link>
         </li>
         <b-nav-item

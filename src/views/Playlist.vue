@@ -1,7 +1,11 @@
 <template>
   <div class="home">
-    <div>
-      <Navbar />
+    <Navbar />
+    <div class="banner-text flex-center split-text">
+      <div class="split-text">
+        Request songs at
+        <a :href="link" target="_blank" class="">{{link}}</a>.
+      </div>
     </div>
     <aplayer class="custom-player" :audio="playlist" ref="aplayer" :listMaxHeight="listMaxHeight" />
   </div>
@@ -41,17 +45,21 @@ export default {
     playlist() {
       return this.$store.state.playlist;
     },
+    link() {
+      const email = localStorage.getItem("email");
+      return `https://songdedi.herokuapp.com/request:${email}`;
+    },
   },
   methods: {
     initialiselistMaxHeight() {
       const viewWidth = window.outerWidth;
       let viewHeight = window.outerHeight;
-      const usedHeight = 56 + 66; // navbar + player info height
-      const marginTop = 20;
+      const usedHeight = 56 + 66 + 100; // navbar + player info + banner-text height
+      const marginBot = 20;
 
       if (viewWidth > 990) {
         viewHeight = window.innerHeight;
-        this.listMaxHeight = viewHeight - usedHeight - marginTop * 2;
+        this.listMaxHeight = viewHeight - usedHeight - marginBot;
         return;
       }
       this.listMaxHeight = viewHeight - usedHeight;
