@@ -2,6 +2,7 @@ import * as firebase from 'firebase/app'
 import "firebase/storage";
 import 'firebase/auth'
 import 'firebase/firestore'
+import "firebase/analytics";
 
 const firebaseConfig = {
     apiKey: process.env.VUE_APP_apiKey,
@@ -15,6 +16,7 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig)
+firebase.analytics();
 const storage = firebase.storage()
 const db = firebase.firestore()
 const auth = firebase.auth()
