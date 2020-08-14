@@ -10,7 +10,7 @@
 
     <div class="banner-text flex-center split-text">
       <div class="split-text">
-        Request songs at
+        Dedicate songs at
         <a :href="link" target="_blank">{{link}}</a>.
       </div>
     </div>
