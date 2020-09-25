@@ -2,12 +2,17 @@
 
 Where the requested songs come together to form a playlist.
 
-Song request live site: https://songdedi.herokuapp.com/
-
 Song dedication admin panel live site: https://songdedi-admin.herokuapp.com/
 
+This site is to be set up with the request site. 
+
+Song request live site: https://songdedi.herokuapp.com/
+
+Request site repository: https://github.com/huishun98/songdedi-requests.git
+
+
 ## Local Development Server
-1. Create .env.local file with following environnment variables.
+1. Create .env.local file with following environnment variables. These environment variables are from Firebase.
 - VUE_APP_apiKey
 - VUE_APP_authDomain
 - VUE_APP_databaseURL
