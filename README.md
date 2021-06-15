@@ -4,9 +4,13 @@ Where the requested songs come together to form a playlist.
 
 Song dedication admin panel live site: https://songdedi-admin.herokuapp.com/
 
+![Admin site web view](https://github.com/huishun98/songdedi-admin/blob/master/src/assets/screenshot3.png)
+
 This site is to be set up with the request site. 
 
 Song request live site: https://songdedi.herokuapp.com/
+
+![Request site web view](https://github.com/huishun98/songdedi-admin/blob/master/src/assets/screenshot3.png)
 
 Request site repository: https://github.com/huishun98/songdedi-requests.git
 
