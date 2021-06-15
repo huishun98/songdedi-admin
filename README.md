@@ -10,7 +10,7 @@ This site is to be set up with the request site.
 
 Song request live site: https://songdedi.herokuapp.com/
 
-![Request site web view](https://github.com/huishun98/songdedi-admin/blob/master/src/assets/screenshot3.png)
+![Request site web view](https://github.com/huishun98/songdedi-admin/blob/master/src/assets/screenshot4.png)
 
 Request site repository: https://github.com/huishun98/songdedi-requests.git
 
